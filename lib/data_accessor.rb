@@ -3,8 +3,8 @@ module GAssign
     attr_reader :dir, :file_name
 
     # for testing and other DI conveniences
-    def initialize(dir = default_dir, file_name = default_file_name)
-      @dir = path
+    def initialize(dir = default_dir, file_name)
+      @dir = dir
       @file_name = file_name
     end
 
@@ -12,16 +12,8 @@ module GAssign
       "#{dir}/#{file_name}"
     end
 
-    def default_file_name
-      ""
-    end
-
     def default_dir
       "#{ENV['HOME']}/.g-assign"
-    end
-
-    def default_data_structure
-      {}
     end
 
     def file_exist?
@@ -29,7 +21,7 @@ module GAssign
     end
 
     def read_file
-      return default_data_structure if !file_exist?
+      return if !file_exist?
       contents = File.read(path)
       @data = JSON.parse(contents)
     end
