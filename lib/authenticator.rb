@@ -1,49 +1,33 @@
 module GAssign
   class Authenticator
-    attr_reader :path,
-      :input_stream, :output_stream
+    attr_reader :accessor, :input_stream, :output_stream
 
-    def initialize(path = default_path, input_stream = $stdin, output_stream = $stdout)
-      @path = path
+    def initialize(accessor = default_accessor, input_stream = $stdin, output_stream = $stdout)
+      @accessor = accessor
       @input_stream = input_stream
       @output_stream = output_stream
     end
 
-    def load
-      credentials_exist? ? read_credentials : save
-    end
-
-    def default_path
-      "#{ENV['HOME']}/.g-assign/credentials.json"
+    def default_accessor
+      DataAccessor.new('credentials.json')
     end
 
     def request_credentials
-      @credentials = ['username', 'password', 'github_name'].inject({}) do |hash, key|
+      ['username', 'password', 'github_name'].inject({}) do |hash, key|
         puts "Enter your #{key}: "
         hash[key] = gets.chomp
         hash
       end
     end
 
-    def credentials_exist?
-      File.exist?(path)
-    end
-
-    def read_credentials
-      return {} unless credentials_exist?
-      contents = File.read(path)
-      @credentials = JSON.parse(contents)
-    end
-
     def credentials
-      @credentials || read_credentials
-    end
-
-    def save
-      request_credentials if credentials.empty?
-      File.open(path, 'w') do |f|
-        f.write(credentials.to_json)
+      return @credentials if @credentials
+      @credentials = accessor.read_file
+      unless @credentials
+        accessor.save(request_credentials)
+        @credentials = accessor.data
       end
+      @credentials
     end
 
     def username

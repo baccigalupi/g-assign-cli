@@ -3,7 +3,7 @@ module GAssign
     attr_reader :dir, :file_name
 
     # for testing and other DI conveniences
-    def initialize(dir = default_dir, file_name)
+    def initialize(file_name, dir = default_dir)
       @dir = dir
       @file_name = file_name
     end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GAssign::DataAccessor do
-  let(:accessor) { GAssign::DataAccessor.new(dir, file_name) }
+  let(:accessor) { GAssign::DataAccessor.new(file_name, dir) }
 
   let(:dir) { File.dirname(__FILE__) + "/support" }
   let(:file_name) { "credentials.json" }
@@ -41,7 +41,7 @@ describe GAssign::DataAccessor do
 
     before do
       File.delete(path) if File.exist?(path)
-      GAssign::DataAccessor.new(dir, file_name).save(data)
+      GAssign::DataAccessor.new(file_name, dir).save(data)
     end
 
     describe '#read_credentials' do
