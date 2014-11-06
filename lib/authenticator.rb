@@ -9,8 +9,12 @@ module GAssign
       @output_stream = output_stream
     end
 
+    def load
+      credentials_exist? ? read_credentials : save
+    end
+
     def default_path
-      "#{ENV['HOME']}/.g-assign-credentials.json"
+      "#{ENV['HOME']}/.g-assign/credentials.json"
     end
 
     def request_credentials
@@ -21,8 +25,12 @@ module GAssign
       end
     end
 
+    def credentials_exist?
+      File.exist?(path)
+    end
+
     def read_credentials
-      return {} unless File.exist?(path)
+      return {} unless credentials_exist?
       contents = File.read(path)
       @credentials = JSON.parse(contents)
     end

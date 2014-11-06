@@ -1,7 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    commander (4.2.1)
+      highline (~> 1.6.11)
     diff-lcs (1.2.5)
+    highline (1.6.21)
     mime-types (2.4.3)
     netrc (0.8.0)
     rest-client (1.7.2)
@@ -24,5 +27,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  commander
   rest-client
   rspec

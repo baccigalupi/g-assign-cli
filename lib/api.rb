@@ -1,7 +1,11 @@
 module GAssign
-  class API
+  class API < Struct.new(:authenticator)
+    extend Forwardable
+
+    def_delegators :authenticator, :username, :password
+
     def base_url
-      "http://g-assign-api.herokuapp.com"
+      "http://#{username}:#{password}@g-assign-api.herokuapp.com"
     end
 
     def url(path)

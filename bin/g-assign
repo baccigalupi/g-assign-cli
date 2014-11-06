@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'commander/import'
+require_relative '../lib/g_assign'
+
+program :name, 'gAssign for gSchool'
+program :version, '0.0.1'
+program :description, 'Application for getting and submitting your assignments'
+
+# Students API
+
+command :setup do |c|
+  c.syntax =      "g-assign setup"
+  c.description = "setup g-assign for use"
+  c.action do |args, options|
+    GAssign::CLI::Setup.new(args, options).run
+  end
+end
+
+command :fetch do |c|
+  c.syntax =      "g-assign fetch"
+  c.description = "fetch new assignments"
+  c.action do |args, options|
+    GAssign::CLI::Fetch.new(args, options).run
+  end
+end
+
+command :status do |c|
+  c.syntax =      "g-assign status"
+  c.description = "check to see which assignments are still required"
+  c.action do |args, options|
+    # GAssign::CLI::Status.new(args, options).run
+  end
+end
+
+command :submit do |c|
+  c.syntax =      "g-assign status"
+  c.description = "check to see which assignments are still required"
+  c.action do |args, options|
+    # GAssign::CLI::Submit.new(args, options).run
+  end
+end
