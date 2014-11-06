@@ -12,8 +12,8 @@ module GAssign
 
       def mkdirs
         puts "Making directories ..."
-        `mkdir -p ~/.g-assign`
-        `mkdir -p ~/Project/gSchool/assignments`
+        `mkdir -p #{GAssign::DATA_DIR}`
+        `mkdir -p #{GAssign::ASSIGNMENTS_DIR}`
       end
 
       def authenticate
