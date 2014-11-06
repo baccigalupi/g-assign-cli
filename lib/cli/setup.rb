@@ -18,7 +18,7 @@ module GAssign
 
       def authenticate
         puts "Setting up credentials ..."
-        Authenticator.new.load
+        Authenticator.new.credentials
       end
     end
   end

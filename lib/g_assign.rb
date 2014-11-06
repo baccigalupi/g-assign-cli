@@ -6,6 +6,6 @@ module GAssign
 end
 
 require_relative "api"
+require_relative "data_accessor"
 require_relative "authenticator"
 require_relative "cli/setup"
-require_relative "cli/fetch"

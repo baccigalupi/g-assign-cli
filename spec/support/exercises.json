@@ -1,0 +1,11 @@
+[
+  {"name":"Bob","type":"exercise","location":"git@github.com:exercism/exercism.io","assigned_on":"2014-10-23","due_on":null},
+  {"name":"temperature spread","type":"assessment","location":"git@github.com:gschool-g5/temperature_spread","assigned_on":"2014-10-23","due_on":"2014-06-11"},
+  {"name":"array-exercises","type":"exercise","location":"git@github.com:gschool/array-exercises","assigned_on":"2014-10-23","due_on":null},
+  {"name":"string transformation assessment","type":"assessment","location":"git@github.com:gSchool/string-assessment","assigned_on":"2014-10-23","due_on":null},
+  {"name":"hash exercises","type":"exercise","location":"git@github.com:gschool/hash-exercises","assigned_on":"2014-10-23","due_on":null},
+  {"name":"collection assessment","type":"assessment","location":"git@github.com:gSchool/collections-assessment","assigned_on":"2014-10-23","due_on":null},
+  {"name":"iteration assessment","type":"assessment","location":"git@github.com:gSchool/iteration-assessment","assigned_on":"2014-10-23","due_on":null},
+  {"name":"class assessment","type":"assessment","location":"git@github.com:gschool-g5/temperature_spread","assigned_on":"2014-11-04","due_on":null},
+  {"name":"git review exercise","type":"exercise","location":"git@github.com:gschool-g5/git-review","assigned_on":"2014-11-05","due_on":null}
+]
