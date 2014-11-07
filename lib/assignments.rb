@@ -1,8 +1,15 @@
-# DOH! No tests, yo!
 module GAssign
   class Assignments
+    attr_reader :api, :accessor, :system
+
+    def initialize(accessor = default_accessor, api = default_api, system = default_system)
+      @api = api
+      @accessor = accessor
+      @system = system
+    end
+
     def refresh_data
-      puts "Retrieving latest information on exercises ..."
+      system.puts "Retrieving latest information on exercises ..."
       accessor.save(api.all('assignments'))
     end
 
@@ -15,46 +22,25 @@ module GAssign
 
       Dir.chdir(GAssign::ASSIGNMENTS_DIR) do
         all.each do |assignment|
-          dir = directory(assignment['location'])
-
-          if dir && !File.exist?("#{GAssign::ASSIGNMENTS_DIR}/#{dir}")
-            dirs << dir
-            clone_assignment(assignment)
-            remove_git_dir(dir)
-          end
+          dirs << AssignmentManager.new(assignment).clone
         end
       end
 
-      puts
-      puts "Fetched #{dirs.size} repositories"
-      dirs.map {|d| puts "  #{d}"}
+      system.puts
+      system.puts "Fetched #{dirs.size} repositories"
+      dirs.map {|d| system.puts "  #{d}"}
     end
 
-    def clone_assignment(assignment)
-      puts "Cloning assignment: #{assignment['name']}"
-      `git clone #{assignment['location']}`
-      puts
-    end
-
-    def remove_git_dir(dir)
-      `rm -rf #{dir}/.git`
-    end
-
-    def directory(repo)
-      matches = repo.match(/\/([^\/]*)$/)
-      matches && matches[1]
-    end
-
-    def accessor
+    def default_accessor
       @accessor ||= DataAccessor.new('assignments.json')
     end
 
-    def auth
-      @auth ||= Authenticator.new
+    def default_api
+      @api ||= API.new(Authenticator.new)
     end
 
-    def api
-      @api ||= API.new(auth)
+    def default_system
+      @system = System.new
     end
   end
 end

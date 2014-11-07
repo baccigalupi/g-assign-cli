@@ -10,7 +10,9 @@ end
 
 require_relative "api"
 require_relative "data_accessor"
+require_relative "system"
 require_relative "authenticator"
 require_relative "assignments"
+require_relative "assignment_manager"
 require_relative "cli/setup"
 require_relative "cli/fetch"
