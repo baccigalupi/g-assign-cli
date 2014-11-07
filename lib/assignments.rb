@@ -18,6 +18,8 @@ module GAssign
     end
 
     def clone
+      CLI::Setup.new.run unless File.exist?(GAssign::ASSIGNMENTS_DIR)
+
       dirs = []
 
       Dir.chdir(GAssign::ASSIGNMENTS_DIR) do
@@ -25,6 +27,7 @@ module GAssign
           dirs << AssignmentManager.new(assignment).clone
         end
       end
+      dirs.compact!
 
       system.puts
       system.puts "Fetched #{dirs.size} repositories"

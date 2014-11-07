@@ -6,6 +6,10 @@ describe GAssign::AssignmentManager do
   let(:data) { {"name" =>"temperature spread", "location" => "git@github.com:gschool-g5/temperature_spread"} }
   let(:system) { double(puts: '', run: '') }
 
+  before do
+    allow(File).to receive(:exist?).and_return(false)
+  end
+
   describe '#path' do
     it "is the repo name" do
       expect(manager.path).to be == "temperature_spread"

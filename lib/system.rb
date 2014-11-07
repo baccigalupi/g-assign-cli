@@ -7,7 +7,7 @@ module GAssign
       @stdout = stdout
     end
 
-    def puts(message)
+    def puts(message='')
       stdout.puts(message)
     end
 

@@ -7,6 +7,10 @@ describe GAssign::Assignments do
   let(:api) { double(all: []) }
   let(:printer) { double(puts: '', run: '') }
 
+  before do
+    allow(GAssign::CLI::Fetch).to receive(:new).and_return(double(run: true))
+  end
+
   describe '#refresh_data' do
     it "makes an api request for all assignments" do
       expect(api).to receive(:all).with('assignments').and_return([])

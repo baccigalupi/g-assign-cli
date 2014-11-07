@@ -12,10 +12,9 @@ module GAssign
         if path && !File.exist?("#{GAssign::ASSIGNMENTS_DIR}/#{path}")
           clone_and_report
           remove_git
+          path
         end
       end
-
-      path
     end
 
     def path
