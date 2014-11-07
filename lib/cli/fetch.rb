@@ -4,10 +4,13 @@ module GAssign
       def initialize(*args)
       end
 
+      def assignments
+        @assignments ||= GAssign::Assignments.new
+      end
+
       def run
-        # get assignments
-        # get submissions
-        # clone new assignments in right directory
+        assignments.refresh_data
+        assignments.clone
       end
     end
   end
